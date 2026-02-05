@@ -108,7 +108,7 @@ public class libraryBookManagement {
 
                         // Searches for books by that author and displays them
                         for(int i = 0; i < books.size(); i++) {
-                            if(userInput == books.get(i).getAuthor()) {
+                            if((userInput.trim()).toLowerCase() == ((books.get(i).getAuthor()).trim()).toLowerCase()) {
                                 bookFound = true;
                                 books.get(i).displayInfo();
                             }
@@ -154,7 +154,7 @@ public class libraryBookManagement {
                         
                         // Searches for book and checks it out if it finds it
                         for(int i = 0; i < books.size(); i++) {
-                            if(userInput == books.get(i).getTitle()) {
+                            if((userInput.trim()).toLowerCase() == ((books.get(i).getTitle()).trim()).toLowerCase()) {
                                 books.get(i).setAvailability(false);
                                 searching = false;
                                 System.out.println("Successfully checked out book!");
@@ -198,7 +198,7 @@ public class libraryBookManagement {
                         
                         // Searches for, and returns book if it's found
                         for(int i = 0; i < books.size(); i++) {
-                            if(userInput == books.get(i).getTitle()) {
+                            if((userInput.trim()).toLowerCase() == ((books.get(i).getTitle()).trim()).toLowerCase()) {
                                 books.get(i).setAvailability(true);
                                 searching = false;
                                 System.out.println("Successfully returned book!");
