@@ -45,7 +45,10 @@ public class libraryBookManagement {
                     books.add(newBook);
                     System.out.println("Book added successfully!");
                     break;
-                case 2: // Displays the titles of all books
+                case 2: // Displays the information of all books
+                    for(int i = 0; i < books.size(); i++) {
+                       books.get(i).displayInfo();
+                    }
                     break;
                 case 3: // Displays the titles of all books marked as "available"
                     break;

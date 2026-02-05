@@ -21,7 +21,7 @@ public class Book {
 
     // Display info method to display all information about a book
     public void displayInfo() {
-        System.out.print("Book Information\n\nBook Title: " + getTitle() + "\nAuthor: " + getAuthor() + "\nISBN: " + getIsbn() + "\nIs available to check out: ");
+        System.out.print("\nBook Title: " + getTitle() + "\nAuthor: " + getAuthor() + "\nISBN: " + getIsbn() + "\nIs available to check out: ");
         if(available == true) {
             System.out.println("Yes");
         }
