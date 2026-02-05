@@ -45,23 +45,49 @@ public class libraryBookManagement {
                     books.add(newBook);
                     System.out.println("Book added successfully!");
                     break;
+
                 case 2: // Displays the information of all books
-                    for(int i = 0; i < books.size(); i++) {
-                       books.get(i).displayInfo();
+                    System.out.println("Displaying all books:\n");
+                    if(books.isEmpty()) {
+                        System.out.println("No Books in Library yet, returning to menu:\n");
+                    }
+                    else {
+                        for(int i = 0; i < books.size(); i++) {
+                            books.get(i).displayInfo();
+                        }
+                        System.out.println("All books displayed, returning to menu:\n");
                     }
                     break;
+
                 case 3: // Displays the titles of all books marked as "available"
+                    System.out.println("Displaying all available books:\n");
+                    if(books.isEmpty()) {
+                        System.out.println("No Books in Library yet, returning to menu:\n");
+                    }
+                    else {
+                        for(int i = 0; i < books.size(); i++) {
+                            if(books.get(i).isAvailable()) {
+                                books.get(i).displayInfo();
+                            }
+                        }
+                        System.out.println("All available books displayed, returning to menu:\n");
+                    }
                     break;
+
                 case 4: // Search for a book based on the author
                     break;
+
                 case 5: // Checks out a book from the library (sets available to false)
                     break;
+
                 case 6: // Returns a book to the library (sets available to true)
                     break;
+
                 case 7: // Ends the Program
                     systemActive = false;
                     System.out.println("Shutting Down, have a nice day :)");
                     break;
+
                 default:
                     System.out.println("That is not an available option, please input a number between 1 and 7");
                     continue;
