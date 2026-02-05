@@ -9,7 +9,12 @@ public class libraryBookManagement {
         // Boolean used to run the main loop and search loop
         boolean systemActive = true;
         boolean searching;
+
+        // Boolean used while searching for books
         boolean bookFound;
+
+        // Boolean used when entering the ISBN of a book
+        boolean isValid;
 
         // Two strings to allow the user to select an option
         String userInput;
@@ -18,7 +23,7 @@ public class libraryBookManagement {
         // Short list of variables used when user is creating a new book
         String title;
         String author;
-        String isbn;
+        int isbn;
 
         // Creates an arraylist to store all of the books
         ArrayList<Book> books = new ArrayList<>();
@@ -31,7 +36,7 @@ public class libraryBookManagement {
         while(systemActive) {
 
             // Output the main menu, prompt user to enter option
-            System.out.println("Please Select an Option:\n1. Register a new book\n2. Display all books\n3. Display all available books\n4. Search books by author\n5. Check out a book\n6. Return a book\n7. Exit\n(Enter the number of the option you'd like to select)");
+            System.out.println("Please Select an Option:\n1. Register a new book\n2. Display all books\n3. Display all available books\n4. Search books by ISBN\n5. Check out a book\n6. Return a book\n7. Exit\n(Enter the number of the option you'd like to select)");
             userInput = keyedInput.nextLine();
 
             // If the user does not enter an integer, re-run the loop
@@ -52,8 +57,29 @@ public class libraryBookManagement {
                     title = keyedInput.nextLine();
                     System.out.println("Enter the author of the book you are adding:");
                     author = keyedInput.nextLine();
-                    System.out.println("Enter the ISBN of the book you are adding:");
-                    isbn = keyedInput.nextLine();
+
+                    isValid = false;
+                    while(isValid == false) {
+                        System.out.println("Enter the ISBN of the book you are adding:");
+                        userInput = keyedInput.nextLine();
+                        // Error Check
+                        try {
+                            userInt = Integer.parseInt(userInput);
+                        }
+                        catch (Exception InvalidInteger) {
+                            System.out.println("What you entered was not valid, please enter the ISBN of the book as an integer");
+                            continue;
+                        }
+                        if((String.valueOf(userInt).length()) < 10) {
+                            System.out.println("ISBNs must be a minimum of 10 characters, please reenter ISBN");
+                            continue;
+                        }
+                        else {
+                            isValid = true;
+                        }
+                    }
+
+                    isbn = userInt;
 
                     // Creates the book based on the information the user entered, availability defaults to true
                     Book newBook = new Book(title, author, isbn, true);
