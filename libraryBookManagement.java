@@ -9,7 +9,7 @@ public class libraryBookManagement {
         // Boolean used to run the main loop and search loop
         boolean systemActive = true;
         boolean searching;
-        boolean authorFound;
+        boolean bookFound;
 
         // Two strings to allow the user to select an option
         String userInput;
@@ -81,16 +81,16 @@ public class libraryBookManagement {
                     while(searching) {
                         System.out.println("Please enter the first and last name (or pen-name) of the author you would like to search for:");
                         userInput = keyedInput.nextLine();
-                        authorFound = false;
+                        bookFound = false;
 
                         for(int i = 0; i < books.size(); i++) {
                             if(userInput == books.get(i).getAuthor()) {
-                                authorFound = true;
+                                bookFound = true;
                                 books.get(i).displayInfo();
                             }
                         }
 
-                        if(authorFound == false) {
+                        if(bookFound == false) {
                             System.out.println("Couldn't find the author you were looking for.");
                         }
 
@@ -104,7 +104,7 @@ public class libraryBookManagement {
                             System.out.println("What you entered was not a valid option, exiting search");
                             searching = false;
                         }
-                        
+
                         if(userInt == 1) {
                             continue;
                         }
@@ -116,9 +116,83 @@ public class libraryBookManagement {
                     break;
 
                 case 5: // Checks out a book from the library (sets available to false)
+                    searching = true;
+                    bookFound = false;
+                    while(searching) {
+                        System.out.println("Enter the name of the book you would like to check out:");
+                        userInput = keyedInput.nextLine();
+                        
+                        for(int i = 0; i < books.size(); i++) {
+                            if(userInput == books.get(i).getTitle()) {
+                                books.get(i).setAvailability(false);
+                                searching = false;
+                                System.out.println("Successfully checked out book!");
+                            }
+                        }
+
+                        if(bookFound == false) {
+                            System.out.println("Couldn't find the book you were looking for.");
+                        }
+
+                        System.out.println("\nSearch again?\n1. Yes\n2 (or anything else). No");
+                        userInput = keyedInput.nextLine();
+
+                        try {
+                            userInt = Integer.parseInt(userInput);
+                        }
+                        catch (Exception InvalidInteger) {
+                            System.out.println("What you entered was not a valid option, exiting search");
+                            searching = false;
+                        }
+
+                        if(userInt == 1) {
+                            continue;
+                        }
+                        else {
+                            System.out.println("Returning to menu:");
+                            searching = false;
+                        }
+                    }
                     break;
 
                 case 6: // Returns a book to the library (sets available to true)
+                    searching = true;
+                    bookFound = false;
+                    while(searching) {
+                        System.out.println("Enter the name of the book you would like to return:");
+                        userInput = keyedInput.nextLine();
+                        
+                        for(int i = 0; i < books.size(); i++) {
+                            if(userInput == books.get(i).getTitle()) {
+                                books.get(i).setAvailability(true);
+                                searching = false;
+                                System.out.println("Successfully returned book!");
+                            }
+                        }
+
+                        if(bookFound == false) {
+                            System.out.println("Couldn't find the book you were looking for.");
+                        }
+
+                        System.out.println("\nSearch again?\n1. Yes\n2 (or anything else). No");
+                        userInput = keyedInput.nextLine();
+
+                        try {
+                            userInt = Integer.parseInt(userInput);
+                        }
+                        catch (Exception InvalidInteger) {
+                            System.out.println("What you entered was not a valid option, exiting search");
+                            searching = false;
+                        }
+
+                        if(userInt == 1) {
+                            continue;
+                        }
+                        else {
+                            System.out.println("Returning to menu:");
+                            searching = false;
+                        }
+                    }
                     break;
 
                 case 7: // Ends the Program

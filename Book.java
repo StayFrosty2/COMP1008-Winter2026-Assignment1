@@ -19,6 +19,11 @@ public class Book {
     public String getIsbn() { return isbn; }
     public boolean isAvailable() {return available; }
 
+    // Method to set the availability of the book
+    public void setAvailability(boolean value) {
+        available = value;
+    }
+
     // Display info method to display all information about a book
     public void displayInfo() {
         System.out.print("\nBook Title: " + getTitle() + "\nAuthor: " + getAuthor() + "\nISBN: " + getIsbn() + "\nIs available to check out: ");
