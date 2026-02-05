@@ -2,11 +2,11 @@ public class Book {
     // Variable Delcaration
     private String title;
     private String author;
-    private String isbn;
+    private int isbn;
     private boolean available;
 
     // Constructor for Object
-    public Book(String title, String author, String isbn, boolean available) {
+    public Book(String title, String author, int isbn, boolean available) {
         this.title = title;
         this.author = author;
         this.isbn = isbn;
@@ -16,7 +16,7 @@ public class Book {
     // "Get" methods to get the variables of the object
     public String getTitle() { return title; }
     public String getAuthor() { return author; }
-    public String getIsbn() { return isbn; }
+    public int getIsbn() { return isbn; }
     public boolean isAvailable() {return available; }
 
     // Method to set the availability of the book

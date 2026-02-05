@@ -94,21 +94,29 @@ public class libraryBookManagement {
                     }
                     break;
 
-                case 4: // Search for a book based on the author
+                case 4: // Search for a book based on the ISBN
                     searching = true;
-
                     // Search loop
                     while(searching) {
 
-                        // Request the user to enter the name of the author
-                        System.out.println("Please enter the first and last name (or pen-name) of the author you would like to search for:");
+                        // Request the user to enter the name of the ISBN
+                        System.out.println("Please enter the ISBN of the book you would like to search for");
                         userInput = keyedInput.nextLine();
+                        // Error Check
+                        try {
+                            userInt = Integer.parseInt(userInput);
+                        }
+                        catch (Exception InvalidInteger) {
+                            System.out.println("What you entered was not a valid option, please enter the ISBN of the book");
+                            continue;
+                        }
+
                         bookFound = false;
                         System.out.println("Searching, please wait:\n");
 
-                        // Searches for books by that author and displays them
+                        // Searches for the isbn and displays the corrisponding book
                         for(int i = 0; i < books.size(); i++) {
-                            if((userInput.trim()).toLowerCase() == ((books.get(i).getAuthor()).trim()).toLowerCase()) {
+                            if(userInt == books.get(i).getIsbn()) {
                                 bookFound = true;
                                 books.get(i).displayInfo();
                             }
@@ -116,7 +124,7 @@ public class libraryBookManagement {
 
                         // If no book was found, display that to the user
                         if(bookFound == false) {
-                            System.out.println("Couldn't find the author you were looking for.");
+                            System.out.println("Couldn't find the book you were looking for.");
                         }
 
                         // Prompts the user to search again, if they do not enter an integer or if they do and it's not a 1, return to the menu
@@ -145,18 +153,27 @@ public class libraryBookManagement {
 
                 case 5: // Checks out a book from the library (sets available to false)
                     searching = true;
-                    bookFound = false;
-
                     // Search loop
                     while(searching) {
-                        System.out.println("Enter the name of the book you would like to check out:");
+                        System.out.println("Enter the ISBN of the book you would like to check out:");
                         userInput = keyedInput.nextLine();
-                        
+                        // Error Check
+                        try {
+                            userInt = Integer.parseInt(userInput);
+                        }
+                        catch (Exception InvalidInteger) {
+                            System.out.println("What you entered was not a valid option, please enter the ISBN of the book");
+                            continue;
+                        }
+
+                        bookFound = false;
+                        System.out.println("Searching, please wait:\n");
                         // Searches for book and checks it out if it finds it
                         for(int i = 0; i < books.size(); i++) {
-                            if((userInput.trim()).toLowerCase() == ((books.get(i).getTitle()).trim()).toLowerCase()) {
+                            if(userInt == books.get(i).getIsbn()) {
                                 books.get(i).setAvailability(false);
                                 searching = false;
+                                bookFound = true;
                                 System.out.println("Successfully checked out book!");
                             }
                         }
@@ -189,22 +206,31 @@ public class libraryBookManagement {
 
                 case 6: // Returns a book to the library (sets available to true)
                     searching = true;
-                    bookFound = false;
 
                     // Search loop
                     while(searching) {
-                        System.out.println("Enter the name of the book you would like to return:");
+                        System.out.println("Enter the ISBN of the book you would like to return:");
                         userInput = keyedInput.nextLine();
-                        
-                        // Searches for, and returns book if it's found
+                        // Error Check
+                        try {
+                            userInt = Integer.parseInt(userInput);
+                        }
+                        catch (Exception InvalidInteger) {
+                            System.out.println("What you entered was not a valid option, please enter the ISBN of the book");
+                            continue;
+                        }
+
+                        bookFound = false;
+                        System.out.println("Searching, please wait:\n");
+                        // Searches for book and checks it out if it finds it
                         for(int i = 0; i < books.size(); i++) {
-                            if((userInput.trim()).toLowerCase() == ((books.get(i).getTitle()).trim()).toLowerCase()) {
+                            if(userInt == books.get(i).getIsbn()) {
                                 books.get(i).setAvailability(true);
                                 searching = false;
+                                bookFound = true;
                                 System.out.println("Successfully returned book!");
                             }
                         }
-
 
                         // If no book is found, following code lets user know and prompts them to search again
                         if(bookFound == false) {
